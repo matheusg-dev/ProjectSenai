@@ -1,4 +1,4 @@
-﻿/*using desktop_tutorial.Model;
+﻿/*using ProjectSenai.Model;
 
 Usuario usuario = new Usuario();
 usuario.Nome = "Matheusinho do grau";
