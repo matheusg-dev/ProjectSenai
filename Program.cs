@@ -1,4 +1,15 @@
-﻿using ProjectSenai.Model;
+﻿/*using desktop_tutorial.Model;
+
+Usuario usuario = new Usuario();
+usuario.Nome = "Matheusinho do grau";
+usuario.Senha = "matheusinho123";
+
+ExemploSenaiContext context = new ExemploSenaiContext();
+context.Add(usuario);
+context.SaveChanges();*/
+
+
+using ProjectSenai.Model;
 
 
 while(true)
@@ -8,10 +19,24 @@ while(true)
  string num = Console.ReadLine();
  if (num == "1")
  {
+   ConsoleWriteLine("Digite seu nome:");
+   string nome = Console.ReadLine();
+
+   Usuario expectedUser = null;
     foreach(Usuario usuario in context.Usuarios)
     {
-        Console.Clear();
+        if(Usuario.Nome == nome)
+        {
+         expectedUser = usuario;
+        }
     }
+
+    if(expectedUser == null)
+    {
+      ConsoleWriteLine($"Usuário com ID{expectedUser}logado.");
+
+    }
+
  }
  else if(num == "2")
  {
@@ -19,7 +44,7 @@ while(true)
  }
  else if(num == "3")
 {
-   Console.Clear();
+   break;
 }
 else
     Console.WriteLine("Operação mal sucecida");
