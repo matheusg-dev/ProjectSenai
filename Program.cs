@@ -1,4 +1,40 @@
-﻿/*using ProjectSenai.Model;
+﻿using System.Collections.Generic;
+using System;
+
+List<string> Nomes = new List<string>();
+Nomes.Add("Matheus");
+Nomes.Add("Kleber");
+Nomes.Add("Joao");
+Nomes.Add("Henrique");
+Nomes.Add("Pedro");
+Nomes.Add("Jose");
+Nomes.Add("Marisa");
+Nomes.Add("Paulo");
+Nomes.Add("Roberto");
+Nomes.Add("Eugenia");
+List<string> Senha = new List<string>();
+Senha.Add("0");
+Senha.Add("1");
+Senha.Add("2");
+Senha.Add("3");
+Senha.Add("4");
+Senha.Add("5");
+Senha.Add("6");
+Senha.Add("7");
+Senha.Add("8");
+Senha.Add("9");
+
+Random rnd = new Random();
+
+
+
+
+
+
+
+/*using ProjectSenai.Model;
+
+
 
 Usuario usuario = new Usuario();
 usuario.Nome = "Matheusinho do grau";
@@ -6,10 +42,10 @@ usuario.Senha = "matheusinho123";
 
 ExemploSenaiContext context = new ExemploSenaiContext();
 context.Add(usuario);
-context.SaveChanges();*/
-
+context.SaveChanges();
 
 using ProjectSenai.Model;
+
 
 
 while(true)
@@ -48,8 +84,8 @@ while(true)
 }
 else
     Console.WriteLine("Operação mal sucecida");
-}
-
+} 
+*/
 
 
 
