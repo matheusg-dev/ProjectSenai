@@ -1,5 +1,10 @@
 ﻿using System.Collections.Generic;
 using System;
+using ProjectSenai.Model;
+using System.Collections;
+using System.IO;
+using System.Diagnostics;
+using System.Linq;
 
 List<string> Nomes = new List<string>();
 Nomes.Add("Matheus");
@@ -23,30 +28,44 @@ Senha.Add("6");
 Senha.Add("7");
 Senha.Add("8");
 Senha.Add("9");
+Senha.Add("!");
+Senha.Add("@");
+Senha.Add("#");
+Senha.Add("$");
+Senha.Add("%");
+Senha.Add("&");
+Senha.Add("/");
+Senha.Add("_");
 
 Random rnd = new Random();
 
+var SenhaCompleta = "";
+int ListNomesIndex = rnd.Next(Nomes.Count);
 
+   for(int i = 0; i <= 5; i++)
+   { 
+      SenhaCompleta += Senha[rnd.Next(Senha.Count)];
+   }
 
-
-
-
-
-/*using ProjectSenai.Model;
-
-
+Console.WriteLine(Nomes[ListNomesIndex]);
+Console.WriteLine(SenhaCompleta);
 
 Usuario usuario = new Usuario();
-usuario.Nome = "Matheusinho do grau";
-usuario.Senha = "matheusinho123";
+usuario.Nome = Nomes[ListNomesIndex];
+usuario.Senha = SenhaCompleta;
+
+Post post = new Post();
+post.Momento = DateTime.Now;
+
+Console.WriteLine(post.Momento);
 
 ExemploSenaiContext context = new ExemploSenaiContext();
 context.Add(usuario);
 context.SaveChanges();
 
+
+/*
 using ProjectSenai.Model;
-
-
 
 while(true)
 {
