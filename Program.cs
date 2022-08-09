@@ -7,6 +7,11 @@ using System.Diagnostics;
 using System.Linq;
 
 List<string> Nomes = new List<string>();
+List<string> Sobrenomes = new List<string>();
+List<string> Senha = new List<string>();
+List<string> Objetos = new List<string>();
+List<string> Adjetivos = new List<string>();
+
 Nomes.Add("Matheus");
 Nomes.Add("Kleber");
 Nomes.Add("Joao");
@@ -17,7 +22,7 @@ Nomes.Add("Marisa");
 Nomes.Add("Paulo");
 Nomes.Add("Roberto");
 Nomes.Add("Eugenia");
-List<string> Senha = new List<string>();
+
 Senha.Add("0");
 Senha.Add("1");
 Senha.Add("2");
@@ -37,31 +42,86 @@ Senha.Add("&");
 Senha.Add("/");
 Senha.Add("_");
 
+Sobrenomes.Add("Silva");
+Sobrenomes.Add("Souza");
+Sobrenomes.Add("Pepes");
+Sobrenomes.Add("Ferraz");
+Sobrenomes.Add("Piratelo");
+Sobrenomes.Add("Padrin");
+Sobrenomes.Add("Pain");
+Sobrenomes.Add("Copas");
+Sobrenomes.Add("Ouros");
+Sobrenomes.Add("Bispo");
+Sobrenomes.Add("Cabello");
+
+Objetos.Add("Carro");
+Objetos.Add("Avião");
+Objetos.Add("Quadro");
+Objetos.Add("Televisão");
+Objetos.Add("Celular");
+Objetos.Add("Fone");
+Objetos.Add("Teclado");
+Objetos.Add("Piano");
+Objetos.Add("Guitarra");
+Objetos.Add("Caixa");
+Objetos.Add("Monitor");
+
+Adjetivos.Add("Atraentes");
+Adjetivos.Add("Doces");
+Adjetivos.Add("Amargos");
+Adjetivos.Add("Diferentes");
+Adjetivos.Add("Sapecas");
+Adjetivos.Add("Curiosos");
+Adjetivos.Add("Estranhos");
+Adjetivos.Add("Feios");
+Adjetivos.Add("Lindos");
+Adjetivos.Add("Legals");
+Adjetivos.Add("Chatos");
+
 Random rnd = new Random();
+ExemploSenaiContext context = new ExemploSenaiContext();
 
 var SenhaCompleta = "";
 int ListNomesIndex = rnd.Next(Nomes.Count);
 
+void criarusuarioaleatorio()
+{
+   
    for(int i = 0; i <= 5; i++)
    { 
       SenhaCompleta += Senha[rnd.Next(Senha.Count)];
    }
+   Console.WriteLine(Nomes[ListNomesIndex]);
+   Console.WriteLine(SenhaCompleta);
 
-Console.WriteLine(Nomes[ListNomesIndex]);
-Console.WriteLine(SenhaCompleta);
+   Usuario usuario = new Usuario();
+   usuario.Nome = Nomes[ListNomesIndex];
+   usuario.Senha = SenhaCompleta;
 
-Usuario usuario = new Usuario();
-usuario.Nome = Nomes[ListNomesIndex];
-usuario.Senha = SenhaCompleta;
+   context.Add(usuario);
+   context.SaveChanges();
+}
 
-Post post = new Post();
-post.Momento = DateTime.Now;
+public void Seguir(int IdSeguidor, int IdSeguido)
+    {
+        Follow sgr = new Follow();
+        
+        sgr.Seguindo = IdSeguidor;
+        sgr.Seguido = IdSeguido;
 
-Console.WriteLine(post.Momento);
+        context.Add(sgr);
+        context.SaveChanges();
+    }
+{
+   Post post = new Post();
+   post.Momento = DateTime.Now;
 
-ExemploSenaiContext context = new ExemploSenaiContext();
-context.Add(usuario);
-context.SaveChanges();
+}
+
+criarusuarioaleatorio();
+
+
+
 
 
 /*

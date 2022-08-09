@@ -16,6 +16,7 @@ namespace ProjectSenai.Model
         {
         }
 
+        public virtual DbSet<Follow> Follows { get; set; } = null!;
         public virtual DbSet<Post> Posts { get; set; } = null!;
         public virtual DbSet<Usuario> Usuarios { get; set; } = null!;
 
@@ -24,12 +25,33 @@ namespace ProjectSenai.Model
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=SNCCHLAB02F26\\TEW_SQLEXPRESS;Initial Catalog=ExemploSenai;Integrated Security=True");
+                optionsBuilder.UseSqlServer("Data Source=SNCCH01LABF109\\TEW_SQLEXPRESS;Initial Catalog=ExemploSenai;Integrated Security=True");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Follow>(entity =>
+            {
+                entity.ToTable("Follow");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Seguido).HasColumnName("seguido");
+
+                entity.Property(e => e.Seguindo).HasColumnName("seguindo");
+
+                entity.HasOne(d => d.SeguidoNavigation)
+                    .WithMany(p => p.FollowSeguidoNavigations)
+                    .HasForeignKey(d => d.Seguido)
+                    .HasConstraintName("FK__Follow__seguido__15502E78");
+
+                entity.HasOne(d => d.SeguindoNavigation)
+                    .WithMany(p => p.FollowSeguindoNavigations)
+                    .HasForeignKey(d => d.Seguindo)
+                    .HasConstraintName("FK__Follow__seguindo__164452B1");
+            });
+
             modelBuilder.Entity<Post>(entity =>
             {
                 entity.ToTable("Post");
@@ -43,7 +65,7 @@ namespace ProjectSenai.Model
                 entity.HasOne(d => d.PublicanteNavigation)
                     .WithMany(p => p.Posts)
                     .HasForeignKey(d => d.Publicante)
-                    .HasConstraintName("FK__Post__Publicante__1367E606");
+                    .HasConstraintName("FK__Post__Publicante__1273C1CD");
             });
 
             modelBuilder.Entity<Usuario>(entity =>
