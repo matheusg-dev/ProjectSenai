@@ -102,7 +102,7 @@ void criarusuarioaleatorio()
    context.SaveChanges();
 }
 
-public void Seguir(int IdSeguidor, int IdSeguido)
+void Seguir(int IdSeguidor, int IdSeguido)
     {
         Follow sgr = new Follow();
         

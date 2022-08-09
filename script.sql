@@ -24,4 +24,17 @@ create table Post(
 	Conteudo varchar(MAX) not null,
 	Momento datetime not null
 
-	);
+);
+go
+
+create table Follow(
+	ID int primary key identity,
+	seguido int references Usuario(ID),
+	seguindo int references Usuario(ID),
+);
+go
+
+
+select * from Follow
+select * from Usuario
+select * from Post
